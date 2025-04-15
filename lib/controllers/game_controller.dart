@@ -131,6 +131,10 @@ abstract class GameControllerBase with Store {
     _gamePlay.modo == Modo.normal ? score++ : score--;
   }
 
+  restartGame() {
+    startGame(gamePlay: _gamePlay);
+  }
+
   nextLevel() {
     int nivelIndex = 0;
 
