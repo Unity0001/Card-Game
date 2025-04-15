@@ -42,7 +42,7 @@ class PokemonTheme {
     appBarTheme: ThemeData.dark().appBarTheme.copyWith(
       elevation: 0,
       centerTitle: true,
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.amber,
       titleTextStyle: GoogleFonts.wendyOne(fontSize: 25),
     ),
   );

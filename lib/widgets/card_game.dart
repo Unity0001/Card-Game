@@ -35,9 +35,47 @@ class _CardGameState extends State<CardGame>
     super.dispose();
   }
 
+  final Map<String, String> imagens = {
+    'abra': 'images/abra.png',
+    'bulbasaur': 'images/bulbasaur.png',
+    'charmander': 'images/charmander.png',
+    'farfetch': 'images/farfetch.png',
+    'growlithe': 'images/growlithe.png',
+    'oddish': 'images/oddish.png',
+    'paras': 'images/paras.png',
+    'poliwag': 'images/poliwag.png',
+    'ponyta': 'images/ponyta.png',
+    'psyduck': 'images/psyduck.png',
+    'sandshrew': 'images/sandshrew.png',
+    'squirtle': 'images/squirtle.png',
+    'vulpix': 'images/vulpix.png',
+    'pikachu': 'images/pikachu.png',
+  };
+
+  final List<String> nomes = [
+    'abra',
+    'bulbasaur',
+    'charmander',
+    'farfetch',
+    'growlithe',
+    'oddish',
+    'paras',
+    'poliwag',
+    'ponyta',
+    'psyduck',
+    'sandshrew',
+    'squirtle',
+    'vulpix',
+    'pikachu',
+  ];
+
   AssetImage getImage(double angulo) {
     if (angulo > 0.5 * pi) {
-      return AssetImage('images/${widget.gameOptions.opcao.toString()}.png');
+      final int index = widget.gameOptions.opcao;
+      final String nome =
+          (index >= 0 && index < nomes.length) ? nomes[index] : 'pikachu';
+      final String? caminho = imagens[nome];
+      return AssetImage(caminho ?? 'images/pikachu.png');
     } else {
       return widget.modo == Modo.normal
           ? const AssetImage('images/card_normal.png')
