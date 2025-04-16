@@ -103,18 +103,18 @@ abstract class GameControllerBase with Store {
   }
 
   _checkGameResultModoNormal(bool allMatched) async {
-    await Future.delayed(
-      const Duration(seconds: 1),
-      () => venceu == allMatched,
-    );
+    await Future.delayed(const Duration(seconds: 1), () => venceu = allMatched);
   }
 
   _checkGameResultModoPokemon(bool allMatched) async {
-    if (_chancesAcabaram()) {
-      await Future.delayed(
-        const Duration(seconds: 1),
-        () => venceu = allMatched,
-      );
+    await Future.delayed(const Duration(seconds: 1));
+
+    if (allMatched) {
+      venceu = true;
+      perdeu = false;
+    } else if (_chancesAcabaram()) {
+      venceu = false;
+      perdeu = true;
     }
   }
 

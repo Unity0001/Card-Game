@@ -23,7 +23,6 @@ class GamePage extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: GameScore(modo: gamePlay.modo),
       ),
-
       body: Observer(
         builder: (_) {
           if (controller.venceu) {

@@ -10,7 +10,7 @@ part of 'recordes_repository.dart';
 
 mixin _$RecordesRepository on RecordesRepositoryBase, Store {
   final _$recordesPokemonAtom = Atom(
-    name: 'RecordesRepositoryBase.recordesRound6',
+    name: 'RecordesRepositoryBase.recordesPokemon',
   );
 
   @override

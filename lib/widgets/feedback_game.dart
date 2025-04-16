@@ -6,8 +6,7 @@ import 'package:provider/provider.dart';
 
 class FeedbackGame extends StatelessWidget {
   final Resultado resultado;
-
-  const FeedbackGame({super.key, required this.resultado});
+  const FeedbackGame({super.key, required this.resultado, });
 
   String getResultado() {
     return resultado == Resultado.aprovado ? 'aprovado' : 'reprovado';

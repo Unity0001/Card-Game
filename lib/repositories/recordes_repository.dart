@@ -27,7 +27,7 @@ abstract class RecordesRepositoryBase with Store {
   }
 
   _initDatabase() async {
-    _recordes = await Hive.openBox('gameRecordes3');
+    _recordes = await Hive.openBox('gameRecordes');
   }
 
   @action
