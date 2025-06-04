@@ -72,10 +72,8 @@ class _CardGameState extends State<CardGame>
   AssetImage getImage(double angulo) {
     if (angulo > 0.5 * pi) {
       final int index = widget.gameOptions.opcao;
-      final String nome =
-          (index >= 0 && index < nomes.length) ? nomes[index] : 'pikachu';
-      final String? caminho = imagens[nome];
-      return AssetImage(caminho ?? 'images/pikachu.png');
+      final String nome = nomes[index - 1];
+      return AssetImage('images/$nome.png');
     } else {
       return widget.modo == Modo.normal
           ? const AssetImage('images/card_normal.png')
