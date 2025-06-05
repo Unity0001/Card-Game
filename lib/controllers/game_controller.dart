@@ -49,7 +49,7 @@ abstract class GameControllerBase with Store {
   }
 
   _resetScore() {
-    _gamePlay.modo == Modo.normal ? score = 0 : score = _gamePlay.nivel;
+    _gamePlay.modo == Modo.pokemon ? score = _gamePlay.nivel : score = 0;
   }
 
   _generateCards() {
@@ -74,7 +74,9 @@ abstract class GameControllerBase with Store {
 
   _compararEscolhas() async {
     if (jogadaCompleta) {
+      bool acertou = false;
       if (_escolha[0].opcao == _escolha[1].opcao) {
+        acertou = true;
         _acertos++;
         _escolha[0].matched = true;
         _escolha[1].matched = true;
@@ -88,7 +90,7 @@ abstract class GameControllerBase with Store {
       }
 
       _resetJogada();
-      _updateScore();
+      _updateScore(acertou: acertou);
       _checkGameResult();
     }
   }
@@ -119,7 +121,7 @@ abstract class GameControllerBase with Store {
   }
 
   _chancesAcabaram() {
-    return score < _numPares - _acertos;
+    return score <= 0;
   }
 
   _resetJogada() {
@@ -127,8 +129,14 @@ abstract class GameControllerBase with Store {
     _escolhaCallback = [];
   }
 
-  _updateScore() {
-    _gamePlay.modo == Modo.normal ? score++ : score--;
+  _updateScore({required bool acertou}) {
+    if (_gamePlay.modo == Modo.normal) {
+      score++;
+    } else {
+      if (!acertou && score > 0) {
+        score--;
+      }
+    }
   }
 
   restartGame() {
