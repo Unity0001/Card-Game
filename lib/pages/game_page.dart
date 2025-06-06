@@ -26,9 +26,13 @@ class GamePage extends StatelessWidget {
       body: Observer(
         builder: (_) {
           if (controller.venceu) {
-            return const FeedbackGame(resultado: Resultado.aprovado);
+            return const FeedbackGame(
+              resultado: Resultado.aprovado,
+            );
           } else if (controller.perdeu) {
-            return const FeedbackGame(resultado: Resultado.reprovado);
+            return const FeedbackGame(
+              resultado: Resultado.reprovado,
+            );
           } else {
             return Center(
               child: GridView.count(

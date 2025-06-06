@@ -97,11 +97,11 @@ abstract class GameControllerBase with Store {
 
   _checkGameResult() async {
     bool allMatched = _acertos == _numPares;
-    if (_gamePlay.modo == Modo.normal) {
-      await _checkGameResultModoNormal(allMatched);
-    } else {
+    if (_gamePlay.modo != Modo.normal) {
       await _checkGameResultModoPokemon(allMatched);
+      return;
     }
+    await _checkGameResultModoNormal(allMatched);
   }
 
   _checkGameResultModoNormal(bool allMatched) async {

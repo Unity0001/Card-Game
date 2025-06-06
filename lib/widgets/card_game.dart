@@ -41,15 +41,16 @@ class _CardGameState extends State<CardGame>
     'charmander': 'images/charmander.png',
     'farfetch': 'images/farfetch.png',
     'growlithe': 'images/growlithe.png',
+    'hunter': 'images/hunter.png',
     'oddish': 'images/oddish.png',
     'paras': 'images/paras.png',
+    'pikachu': 'images/pikachu.png',
     'poliwag': 'images/poliwag.png',
     'ponyta': 'images/ponyta.png',
     'psyduck': 'images/psyduck.png',
     'sandshrew': 'images/sandshrew.png',
     'squirtle': 'images/squirtle.png',
     'vulpix': 'images/vulpix.png',
-    'pikachu': 'images/pikachu.png',
   };
 
   final List<String> nomes = [
@@ -58,15 +59,16 @@ class _CardGameState extends State<CardGame>
     'charmander',
     'farfetch',
     'growlithe',
+    'hunter',
     'oddish',
     'paras',
+    'pikachu',
     'poliwag',
     'ponyta',
     'psyduck',
     'sandshrew',
     'squirtle',
     'vulpix',
-    'pikachu',
   ];
 
   AssetImage getImage(double angulo) {
