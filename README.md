@@ -37,3 +37,20 @@ O jogo oferece dois modos de jogo:
    ```bash
    git clone https://github.com/seuusuario/pokemon-memory.git
    ```
+2. Entre na pasta do projeto:
+    ```bash
+    cd card-game
+    ```
+3. Instale as dependências:
+    ```bash
+    flutter pub get 
+    ```
+4. Rode o app: 
+    ```bash
+    flutter run
+    ```
+
+## Contato
+Para dúvidas, sugestões ou contribuições, entre em contato:
+everton.lopes@sou.unifeob.edu.br 
+ou pelo whatsapp: +55 (19) 989817312
