@@ -35,17 +35,14 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> with WidgetsBindingObserver {
-  late MusicPlayerService _musicService;
-
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
-
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _musicService = Provider.of<MusicPlayerService>(context, listen: false);
-      _musicService.playBackgroundMusic('audio/pokemusic.mp3');
-    });
+    Provider.of<MusicPlayerService>(
+      context,
+      listen: false,
+    ).playBackgroundMusic('assets/audio/Instrumental_pokemon.mp3');
   }
 
   @override
