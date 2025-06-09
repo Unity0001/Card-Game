@@ -15,6 +15,7 @@ class MusicPlayerService {
         await _audioPlayer.play(AssetSource(assetPath));
         _isPlaying = true;
       } catch (e) {
+        // ignore: avoid_print
         print('Erro ao tocar música: $e');
       }
     }
@@ -30,6 +31,7 @@ class MusicPlayerService {
   Future<void> pauseBackgroundMusic() async {
     if (_isPlaying) {
       await _audioPlayer.pause();
+      _isPlaying = false;
     }
   }
 

@@ -1,4 +1,3 @@
-import 'package:cardgame/theme.dart';
 import 'package:flutter/material.dart';
 
 class StartButton extends StatelessWidget {
@@ -16,14 +15,17 @@ class StartButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 24),
+      padding: const EdgeInsets.only(top: 20),
       child: OutlinedButton(
-        style: PokemonTheme.outlineButtonStyle(color: color),
-        onPressed: () => action(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text(title, style: const TextStyle(fontSize: 20))],
+        style: OutlinedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 24),
+          side: BorderSide(color: color),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
         ),
+        onPressed: () => action(),
+        child: Text(title, style: const TextStyle(fontSize: 25)),
       ),
     );
   }

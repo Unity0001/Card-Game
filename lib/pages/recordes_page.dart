@@ -10,7 +10,7 @@ class RecordesPage extends StatelessWidget {
 
   const RecordesPage({super.key, required this.modo});
 
-  getModo() {
+  String getModo() {
     return modo == Modo.normal ? 'Normal' : 'Pokemon';
   }
 
@@ -28,12 +28,21 @@ class RecordesPage extends StatelessWidget {
           ),
         ),
       );
-
       widgets.add(const Divider(color: Colors.transparent));
     });
 
     if (widgets.isEmpty) {
-      widgets.add(const Center(child: Text('AINDA NÃO HÁ RECORDES!')));
+      widgets.add(
+        const Padding(
+          padding: EdgeInsets.only(top: 16.0),
+          child: Center(
+            child: Text(
+              'AINDA NÃO HÁ RECORDES!',
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+        ),
+      );
     }
 
     return widgets;
@@ -48,29 +57,32 @@ class RecordesPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Observer(
-          builder:
-              (context) => Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+          builder: (context) {
+            final recordes =
+                modo == Modo.normal
+                    ? repository.recordesNormal
+                    : repository.recordesPokemon;
+
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 36, bottom: 24),
-                    child: Center(
-                      child: Text(
-                        'Modo ${getModo()}',
-                        style: const TextStyle(
-                          fontSize: 28,
-                          color: PokemonTheme.color,
-                        ),
+                  const SizedBox(height: 36),
+                  Center(
+                    child: Text(
+                      'Modo ${getModo()}',
+                      style: const TextStyle(
+                        fontSize: 28,
+                        color: PokemonTheme.color,
                       ),
                     ),
                   ),
-                  ...getRecordesList(
-                    modo == Modo.normal
-                        ? repository.recordesNormal
-                        : repository.recordesPokemon,
-                  ),
+                  const SizedBox(height: 24),
+                  ...getRecordesList(recordes),
                 ],
               ),
+            );
+          },
         ),
       ),
     );
