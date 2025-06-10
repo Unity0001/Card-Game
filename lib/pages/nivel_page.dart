@@ -16,7 +16,7 @@ class NivelPage extends StatelessWidget {
             .map((n) => CardNivel(gamePlay: GamePlay(modo: modo, nivel: n)))
             .toList();
     return Scaffold(
-      appBar: AppBar(title: const Text('Nível do Jogo')),
+      appBar: AppBar(title: const Text('Quantidade de cartas')),
       body: Padding(
         padding: const EdgeInsets.only(top: 48),
         child: GridView.count(

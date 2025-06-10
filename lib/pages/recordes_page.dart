@@ -14,14 +14,21 @@ class RecordesPage extends StatelessWidget {
     return modo == Modo.normal ? 'Normal' : 'Pokemon';
   }
 
-  List<Widget> getRecordesList(Map recordes) {
+  List<Widget> getRecordesList(Map recordes, double fontSize) {
     final List<Widget> widgets = [];
 
     recordes.forEach((nivel, score) {
       widgets.add(
         ListTile(
-          title: Text('Nível $nivel'),
-          trailing: Text(score.toString()),
+          contentPadding: EdgeInsets.symmetric(
+            vertical: fontSize * 0.4,
+            horizontal: fontSize * 0.5,
+          ),
+          title: Text('Nível $nivel', style: TextStyle(fontSize: fontSize)),
+          trailing: Text(
+            score.toString(),
+            style: TextStyle(fontSize: fontSize),
+          ),
           tileColor: Colors.grey[900],
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(15)),
@@ -33,12 +40,12 @@ class RecordesPage extends StatelessWidget {
 
     if (widgets.isEmpty) {
       widgets.add(
-        const Padding(
-          padding: EdgeInsets.only(top: 16.0),
+        Padding(
+          padding: EdgeInsets.only(top: fontSize * 0.7),
           child: Center(
             child: Text(
               'AINDA NÃO HÁ RECORDES!',
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: fontSize * 0.7),
             ),
           ),
         ),
@@ -52,10 +59,15 @@ class RecordesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final repository = Provider.of<RecordesRepository>(context);
 
+    final media = MediaQuery.of(context);
+    final largura = media.size.width;
+
+    final baseFontSize = (largura / 15).clamp(16, 35).toDouble();
+
     return Scaffold(
       appBar: AppBar(title: const Text('Recordes')),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: EdgeInsets.all(largura * 0.03),
         child: Observer(
           builder: (context) {
             final recordes =
@@ -67,18 +79,18 @@ class RecordesPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const SizedBox(height: 36),
+                  SizedBox(height: baseFontSize * 0.7),
                   Center(
                     child: Text(
                       'Modo ${getModo()}',
-                      style: const TextStyle(
-                        fontSize: 28,
+                      style: TextStyle(
+                        fontSize: (baseFontSize * 1.4),
                         color: PokemonTheme.color,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 24),
-                  ...getRecordesList(recordes),
+                  SizedBox(height: baseFontSize * 0.7),
+                  ...getRecordesList(recordes, baseFontSize * 0.7),
                 ],
               ),
             );
