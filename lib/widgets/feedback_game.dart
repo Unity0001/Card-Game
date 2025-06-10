@@ -24,54 +24,72 @@ class FeedbackGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = context.read<GameController>();
-
     final String imageFileName = getImageFileName();
     final String imagePath = 'images/$imageFileName';
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 12),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Text(
-            '${getResultadoText()}!',
-            style: const TextStyle(
-              fontSize: 30,
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 30),
-            child: Image.asset(
-              imagePath,
-              width: 200,
-              height: 200,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) {
-                return const Icon(Icons.error, color: Colors.red, size: 100);
-              },
-            ),
-          ),
-          resultado == Resultado.reprovado
-              ? StartButton(
-                title: 'Tentar novamente',
-                color: Colors.white,
-                action: () {
-                  controller.restartGame();
-                  Navigator.of(context).pop();
-                },
-              )
-              : StartButton(
-                title: 'Próximo Nível',
-                color: Colors.white,
-                action: () {
-                  controller.nextLevel();
-                  Navigator.of(context).pop();
-                },
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final double verticalOffset = -constraints.maxHeight * 0.1;
+
+        return SizedBox(
+          height: constraints.maxHeight,
+          width: constraints.maxWidth,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Transform.translate(
+                offset: Offset(0, verticalOffset),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      '${getResultadoText()}!',
+                      style: const TextStyle(
+                        fontSize: 30,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 30),
+                      child: Image.asset(
+                        imagePath,
+                        width: 200,
+                        height: 200,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Icon(
+                            Icons.error,
+                            color: Colors.red,
+                            size: 100,
+                          );
+                        },
+                      ),
+                    ),
+                    resultado == Resultado.reprovado
+                        ? StartButton(
+                          title: 'Tentar novamente',
+                          color: Colors.white,
+                          action: () {
+                            controller.restartGame();
+                            Navigator.of(context).pop();
+                          },
+                        )
+                        : StartButton(
+                          title: 'Próximo Nível',
+                          color: Colors.white,
+                          action: () {
+                            controller.nextLevel();
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                  ],
+                ),
               ),
-        ],
-      ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
