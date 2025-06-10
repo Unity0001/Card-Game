@@ -22,6 +22,12 @@ class _RecordesState extends State<Recordes> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    final listTileHeight = screenHeight * 0.07;
+    final iconSize = screenHeight * 0.03; 
+
     return Card(
       color: Colors.grey[900],
       child: Padding(
@@ -29,22 +35,44 @@ class _RecordesState extends State<Recordes> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.all(12),
+            Padding(
+              padding: const EdgeInsets.all(4),
               child: Text(
                 'Recordes',
-                style: TextStyle(color: PokemonTheme.color, fontSize: 22),
+                style: TextStyle(
+                  color: PokemonTheme.color,
+                  fontSize: screenHeight * 0.04, 
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-            ListTile(
-              title: const Text('Modo Normal'),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => showRecordes(Modo.normal),
+
+            SizedBox(
+              width: screenWidth * 1.9,
+              height: listTileHeight,
+              child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(
+                  'Modo Normal',
+                  style: TextStyle(fontSize: 20),
+                ),
+                trailing: Icon(Icons.chevron_right, size: iconSize),
+                onTap: () => showRecordes(Modo.normal),
+              ),
             ),
-            ListTile(
-              title: const Text('Modo Pokemon'),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => showRecordes(Modo.pokemon),
+
+            SizedBox(
+              width: screenWidth * 0.9,
+              height: listTileHeight,
+              child: ListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(
+                  'Modo Pokemon',
+                  style: TextStyle(fontSize: 20),
+                ),
+                trailing: Icon(Icons.chevron_right, size: iconSize),
+                onTap: () => showRecordes(Modo.pokemon),
+              ),
             ),
           ],
         ),
