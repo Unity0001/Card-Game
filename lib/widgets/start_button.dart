@@ -14,6 +14,8 @@ class StartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double fontSizeText = MediaQuery.of(context).size.height * 0.035;
+
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: OutlinedButton(
@@ -25,7 +27,12 @@ class StartButton extends StatelessWidget {
           ),
         ),
         onPressed: () => action(),
-        child: Text(title, style: const TextStyle(fontSize: 25)),
+        child: Text(
+          title,
+          style: TextStyle(
+            fontSize: fontSizeText,
+          ),
+        ),
       ),
     );
   }
